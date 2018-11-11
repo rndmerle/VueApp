@@ -34,6 +34,10 @@ $navbar-height: 2 rem;
   margin-top: 60px;
 }
 
+html {
+  overflow-y: auto !important;
+}
+
 // .iframe{
 //   overflow: hidden;
 //   overflow-x: hidden;

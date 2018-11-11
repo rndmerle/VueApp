@@ -1,8 +1,14 @@
 ---
-title: "Python_Basics"
+title: "Python Basics"
 author: "Jane Doe"
 date: "November 10, 2018"
-output: html_document
+output:
+  html_document:
+    theme: lumen
+    toc: true
+    toc_float: true
+    code_folding: hide
+    code_download: true
 ---
 
 ```{r setup, include=FALSE}
@@ -28,3 +34,29 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Interactive Charts
+
+```{r}
+library(rbokeh)
+figure() %>%
+  ly_points(Sepal.Length, Sepal.Width, data = iris,
+    color = Species, glyph = Species,
+    hover = list(Sepal.Length, Sepal.Width))
+```
+
+## Header 0
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor elit sed vulputate mi sit amet mauris commodo quis. Eget dolor morbi non arcu risus quis varius. Laoreet non curabitur gravida arcu ac tortor. Cras semper auctor neque vitae tempus. Purus in massa tempor nec feugiat. Gravida quis blandit turpis cursus in hac habitasse. Ullamcorper sit amet risus nullam eget felis eget nunc. Erat velit scelerisque in dictum non consectetur a. Adipiscing enim eu turpis egestas. Aliquam sem et tortor consequat. Mauris pharetra et ultrices neque ornare aenean euismod elementum.
+
+## Header 1
+
+Senectus et netus et malesuada fames ac turpis. Nunc id cursus metus aliquam eleifend mi in. Ut ornare lectus sit amet est placerat. Habitant morbi tristique senectus et netus et malesuada fames. Nibh nisl condimentum id venenatis. Turpis in eu mi bibendum neque egestas. Ut eu sem integer vitae justo. Turpis egestas maecenas pharetra convallis posuere morbi leo. Non sodales neque sodales ut etiam sit amet. Maecenas volutpat blandit aliquam etiam. Lectus proin nibh nisl condimentum. Dictumst quisque sagittis purus sit amet volutpat consequat. Adipiscing elit ut aliquam purus sit amet. Magna eget est lorem ipsum dolor sit amet consectetur adipiscing. Porta lorem mollis aliquam ut porttitor leo. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Nunc sed id semper risus in. Vitae sapien pellentesque habitant morbi tristique senectus et netus. Dui id ornare arcu odio ut sem nulla. Nisl nunc mi ipsum faucibus vitae aliquet nec.
+
+Nibh tellus molestie nunc non. Ornare suspendisse sed nisi lacus sed viverra. Gravida dictum fusce ut placerat orci nulla pellentesque dignissim. Pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Vulputate mi sit amet mauris commodo quis. Proin fermentum leo vel orci porta non pulvinar neque. Nunc sed blandit libero volutpat sed cras ornare. Id aliquet lectus proin nibh nisl. Dictum at tempor commodo ullamcorper a lacus vestibulum sed. Facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Augue interdum velit euismod in pellentesque massa. Vitae ultricies leo integer malesuada nunc vel risus commodo.
+
+## Header 2
+
+Pulvinar mattis nunc sed blandit libero. Viverra adipiscing at in tellus integer feugiat scelerisque. Nunc scelerisque viverra mauris in aliquam sem fringilla. Aliquet porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla pellentesque dignissim. Urna duis convallis convallis tellus id interdum velit. Est pellentesque elit ullamcorper dignissim. Nibh venenatis cras sed felis eget velit aliquet. Risus nec feugiat in fermentum posuere pineapple urna nec tincidunt praesent. Vitae suscipit tellus mauris a diam maecenas. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Morbi leo urna molestie at elementum.
+
+Egestas integer eget aliquet nibh praesent. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Vitae semper quis lectus nulla at volutpat diam. Neque sodales ut etiam sit amet. Senectus et netus et malesuada fames ac turpis egestas. Sem nulla pharetra diam sit amet nisl suscipit. Faucibus turpis in eu mi bibendum neque. Laoreet non curabitur gravida arcu ac tortor. Semper eget duis at tellus at urna. Suscipit tellus mauris a diam maecenas sed enim ut sem. Adipiscing commodo elit at imperdiet dui accumsan sit amet. Volutpat consequat mauris nunc congue nisi vitae.
