@@ -43,7 +43,9 @@ This Vue App will be serving `.html` pages converted from `.rmd` files using [Rs
 
 2. Implement Search Engine
 
-    To implement Search Engine functionality similar to [MkDocs](https://www.mkdocs.org/user-guide/configuration/#search) which uses [Lunr.js](https://lunrjs.com/), but using [ElasticLunr.js](http://elasticlunr.com/). Similar to MkDocs, the search engine should make use of the Fragment URLs to direct to the appropriate result.
+    To implement Search Engine functionality similar to [MkDocs](https://www.mkdocs.org/user-guide/configuration/#search) which uses [Lunr.js](https://lunrjs.com/), but using [ElasticLunr.js](http://elasticlunr.com/).
+
+    The Search Engine should index the text in the `.rmd` files as they are plain text, and direct result towards the `.html` pages being served using the iFrame. Similar to [MkDocs](https://www.mkdocs.org/), the Search Engine should make use of the Fragment URLs to direct the search result to the appropriate page and the URL fragment.
 
 3. Implement Dynamic Routing
 
