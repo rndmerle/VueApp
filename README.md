@@ -45,7 +45,7 @@ These `.html` pages are standalone and contain various Scripts and Libraries for
 
     If you run the Vue App and navigate using the Cards to `School > SQL > SQL Basics` you can view the standalone `SQL_Basics.html` page from the `\static` folder served within the app using iFrame tags. Now open the same `.html` page outside of the Vue App, and select a menu item from the left floating Table of Contents (TOC) you will see the URL change to that specific URL fragment starting with a `#`.
 
-    ![](\static\img\001.png)
+    ![](https://github.com/schantanu/VueApp/blob/master/static/img/001.PNG)
     
     Since we are using Vue-Router and iFrame tags, this is not possible natively inside the Vue App. However, this functionality can be implemented using [Window.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) and if you have control over the parent and the iFrame element. You can check an example of that- [Two way iframe communication.](https://gist.github.com/pbojinov/8965299) In our Vue App, the `SQL_Basics.vue` component is the Parent element, and the `SQL_Basics.html` page is the iFrame element. For your code to work, it needs to be a part of both these files. The RStudio program page uses [Tocify.js](http://gregfranko.com/jquery.tocify.js/) library to create the floating Table of Contents and the URL Fragments in the `.html` page.
 
