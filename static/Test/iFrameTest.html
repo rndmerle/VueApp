@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="John Doe" />
+
+<meta name="date" content="2018-11-12" />
+
+<title>iFrame URL</title>
+
+<script src="iFrameTest_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="iFrameTest_files/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="iFrameTest_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="iFrameTest_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="iFrameTest_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="iFrameTest_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="iFrameTest_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="iFrameTest_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="iFrameTest_files/navigation-1.1/tabsets.js"></script>
+<script src="iFrameTest_files/navigation-1.1/codefolding.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">iFrame URL</h1>
+<h4 class="author"><em>John Doe</em></h4>
+<h4 class="date"><em>November 12, 2018</em></h4>
+
+</div>
+
+
+<hr />
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="co">// addEventListener support for IE8</span>
+<span class="kw">function</span> <span class="at">bindEvent</span>(element<span class="op">,</span> eventName<span class="op">,</span> eventHandler) <span class="op">{</span>
+    <span class="cf">if</span> (<span class="va">element</span>.<span class="at">addEventListener</span>) <span class="op">{</span>
+        <span class="va">element</span>.<span class="at">addEventListener</span>(eventName<span class="op">,</span> eventHandler<span class="op">,</span> <span class="kw">false</span>)<span class="op">;</span>
+    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> (<span class="va">element</span>.<span class="at">attachEvent</span>) <span class="op">{</span>
+        <span class="va">element</span>.<span class="at">attachEvent</span>(<span class="st">&#39;on&#39;</span> <span class="op">+</span> eventName<span class="op">,</span> eventHandler)<span class="op">;</span>
+    <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="co">// Send Message</span>
+<span class="kw">var</span> sendMessage <span class="op">=</span> <span class="kw">function</span> (msg) <span class="op">{</span>
+  <span class="co">// Make sure you are sending a string, and to stringify JSON</span>
+  <span class="va">window</span>.<span class="va">parent</span>.<span class="at">postMessage</span>(msg<span class="op">,</span> <span class="st">&#39;*&#39;</span>)<span class="op">;</span>
+<span class="op">};</span>
+
+<span class="co">// Send a message to the Parent on hashchange event</span>
+<span class="co">// bindEvent(window, &#39;hashchange&#39;, function () {</span>
+<span class="co">//   var hash = JSON.stringify(window.location.hash)</span>
+<span class="co">//   var hashstr = hash.replace(&quot;_&quot;, &quot;-&quot;);</span>
+<span class="co">//   sendMessage(&#39;locHash:&#39; + hashstr);</span>
+<span class="co">// });</span>
+
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;TOC&quot;</span>).<span class="at">addEventListener</span>(<span class="st">&#39;hashchange&#39;</span><span class="op">,</span> <span class="kw">function</span> () <span class="op">{</span> <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;hash changed!&#39;</span>) <span class="op">}</span>)
+
+<span class="co">// Listen to message from Parent</span>
+<span class="at">bindEvent</span>(window<span class="op">,</span> <span class="st">&#39;message&#39;</span><span class="op">,</span> <span class="kw">function</span> (e) <span class="op">{</span>
+  <span class="kw">var</span> hashobj <span class="op">=</span> <span class="va">e</span>.<span class="at">data</span><span class="op">;</span>
+  <span class="kw">var</span> hashstr <span class="op">=</span> <span class="va">hashobj</span>.<span class="at">replace</span>(<span class="st">&quot;_&quot;</span><span class="op">,</span> <span class="st">&quot;-&quot;</span>)<span class="op">;</span>
+  <span class="va">window</span>.<span class="va">location</span>.<span class="at">hash</span> <span class="op">=</span> hashstr<span class="op">;</span>
+<span class="op">}</span>)<span class="op">;</span></code></pre></div>
+<script type="text/javascript">
+// addEventListener support for IE8
+function bindEvent(element, eventName, eventHandler) {
+    if (element.addEventListener) {
+        element.addEventListener(eventName, eventHandler, false);
+    } else if (element.attachEvent) {
+        element.attachEvent('on' + eventName, eventHandler);
+    }
+}
+
+// Send Message
+var sendMessage = function (msg) {
+  // Make sure you are sending a string, and to stringify JSON
+  window.parent.postMessage(msg, '*');
+};
+
+// Send a message to the Parent on hashchange event
+// bindEvent(window, 'hashchange', function () {
+//   var hash = JSON.stringify(window.location.hash)
+//   var hashstr = hash.replace("_", "-");
+//   sendMessage('locHash:' + hashstr);
+// });
+
+document.getElementById("TOC").addEventListener('hashchange', function () { console.log('hash changed!') })
+
+// Listen to message from Parent
+bindEvent(window, 'message', function (e) {
+  var hashobj = e.data;
+  var hashstr = hashobj.replace("_", "-");
+  window.location.hash = hashstr;
+});
+</script>
+<hr />
+<div id="lorem-ipsum" class="section level1">
+<h1>Lorem ipsum</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Natoque penatibus et magnis dis parturient montes nascetur ridiculus. Mattis aliquam faucibus purus in massa. Aliquet nec ullamcorper sit amet risus. Lectus urna duis convallis convallis tellus. Nibh mauris cursus mattis molestie a iaculis. Turpis egestas pretium aenean pharetra magna ac. Dis parturient montes nascetur ridiculus mus mauris. Eget sit amet tellus cras. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Viverra aliquet eget sit amet tellus.</p>
+</div>
+<div id="elementum" class="section level1">
+<h1>Elementum</h1>
+<p>Elementum nibh tellus molestie nunc non blandit massa enim. Quam id leo in vitae. Odio eu feugiat pretium nibh ipsum. Etiam non quam lacus suspendisse faucibus. Feugiat in fermentum posuere urna. Placerat duis ultricies lacus sed. Pharetra et ultrices neque ornare. Massa sapien faucibus et molestie ac feugiat sed. Eu augue ut lectus arcu. Id aliquet risus feugiat in ante metus dictum at.</p>
+</div>
+<div id="nunc-non" class="section level1">
+<h1>Nunc non</h1>
+<p>Nunc non blandit massa enim nec dui. Vitae congue eu consequat ac felis donec et. Facilisis mauris sit amet massa vitae. Lacus viverra vitae congue eu consequat ac felis donec et. Interdum consectetur libero id faucibus nisl tincidunt eget. Amet venenatis urna cursus eget nunc scelerisque. Tincidunt ornare massa eget egestas purus viverra accumsan in nisl. Nisi est sit amet facilisis magna etiam tempor orci eu. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Purus in mollis nunc sed id. Nec feugiat in fermentum posuere urna. Morbi leo urna molestie at. Ultrices eros in cursus turpis. Consequat interdum varius sit amet mattis vulputate enim. Ac feugiat sed lectus vestibulum mattis.</p>
+</div>
+<div id="id-neque" class="section level1">
+<h1>Id neque</h1>
+<p>Id neque aliquam vestibulum morbi. Mi proin sed libero enim sed faucibus. Facilisis gravida neque convallis a cras semper auctor neque vitae. Varius sit amet mattis vulputate enim nulla aliquet porttitor lacus.</p>
+<div id="consectetur" class="section level2">
+<h2>Consectetur</h2>
+<p>Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Praesent tristique magna sit amet purus gravida quis blandit. Ut tortor pretium viverra suspendisse potenti nullam ac tortor. Feugiat pretium nibh ipsum consequat nisl. Eget mi proin sed libero enim. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla. Eu scelerisque felis imperdiet proin fermentum leo.</p>
+</div>
+<div id="cursus" class="section level2">
+<h2>Cursus</h2>
+<p>Cursus euismod quis viverra nibh cras. Donec massa sapien faucibus et molestie. Integer quis auctor elit sed vulputate mi sit amet. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Pulvinar etiam non quam lacus. Mattis molestie a iaculis at erat pellentesque adipiscing. Phasellus vestibulum lorem sed risus. Viverra justo nec ultrices dui sapien eget. Suspendisse interdum consectetur libero id.</p>
+</div>
+</div>
+<div id="imperdiet" class="section level1">
+<h1>Imperdiet</h1>
+<p>Imperdiet nulla malesuada pellentesque elit eget gravida. Ut tortor pretium viverra suspendisse. Adipiscing commodo elit at imperdiet dui accumsan. Cursus euismod quis viverra nibh cras pulvinar mattis. In hac habitasse platea dictumst quisque. Ut etiam sit amet nisl purus in mollis nunc. Lobortis elementum nibh tellus molestie nunc non blandit massa. Laoreet sit amet cursus sit amet dictum sit amet justo. Ut placerat orci nulla pellentesque. Pellentesque habitant morbi tristique senectus et. Nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus. Dapibus ultrices in iaculis nunc sed. Pharetra massa massa ultricies mi. Enim sit amet venenatis urna cursus eget. Volutpat lacus laoreet non curabitur gravida arcu ac. Sit amet commodo nulla facilisi nullam vehicula ipsum a arcu. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Arcu felis bibendum ut tristique et egestas quis. Ut eu sem integer vitae justo eget magna fermentum iaculis. A iaculis at erat pellentesque adipiscing commodo elit at.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -281,16 +281,17 @@ div.tocify {
 <span class="op">}</span>
 
 <span class="co">// Send Message</span>
-<span class="kw">var</span> sendMessage <span class="op">=</span> <span class="kw">function</span> (msg) <span class="op">{</span>
+<span class="kw">var</span> sendMessage <span class="op">=</span> <span class="kw">function</span> (message) <span class="op">{</span>
   <span class="co">// Make sure you are sending a string, and to stringify JSON</span>
-  <span class="va">window</span>.<span class="va">parent</span>.<span class="at">postMessage</span>(msg<span class="op">,</span> <span class="st">'*'</span>)<span class="op">;</span>
+  <span class="co">// var message = JSON.stringify(message)</span>
+  <span class="va">window</span>.<span class="va">parent</span>.<span class="at">postMessage</span>(message<span class="op">,</span> <span class="st">'*'</span>)<span class="op">;</span>
 <span class="op">};</span>
 
 <span class="co">// Send a message to the Parent on hashchange event</span>
 <span class="at">bindEvent</span>(window<span class="op">,</span> <span class="st">'hashchange'</span><span class="op">,</span> <span class="kw">function</span> () <span class="op">{</span>
   <span class="kw">var</span> hash <span class="op">=</span> <span class="va">window</span>.<span class="va">location</span>.<span class="at">hash</span>
-  <span class="kw">var</span> hashstr <span class="op">=</span> <span class="va">hash</span>.<span class="at">replace</span>(<span class="st">&quot;_&quot;</span><span class="op">,</span> <span class="st">&quot;-&quot;</span>)<span class="op">;</span>
-  <span class="at">sendMessage</span>(hashstr)<span class="op">;</span>
+  <span class="kw">var</span> hashString <span class="op">=</span> <span class="va">hash</span>.<span class="at">replace</span>(<span class="st">&quot;_&quot;</span><span class="op">,</span> <span class="st">&quot;-&quot;</span>)<span class="op">;</span>
+  <span class="at">sendMessage</span>(<span class="st">'locHash:'</span> <span class="op">+</span> hashString)<span class="op">;</span>
 <span class="op">}</span>)<span class="op">;</span>
 
 <span class="co">// Listen to message from Parent</span>
@@ -310,17 +311,17 @@ function bindEvent(element, eventName, eventHandler) {
 }
 
 // Send Message
-var sendMessage = function (msg) {
+var sendMessage = function (message) {
   // Make sure you are sending a string, and to stringify JSON
-  window.parent.postMessage(msg, '*');
+  // var message = JSON.stringify(message)
+  window.parent.postMessage(message, '*');
 };
 
 // Send a message to the Parent on hashchange event
 bindEvent(window, 'hashchange', function () {
   var hash = window.location.hash
-  var hashstr = hash.replace("_", "-");
-  console.log(hashstr);
-  sendMessage(hashstr);
+  var hashString = hash.replace("_", "-");
+  sendMessage('locHash:' + hashString);
 });
 
 // Listen to message from Parent

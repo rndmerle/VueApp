@@ -1,0 +1,76 @@
+---
+title: "iFrame URL"
+author: "John Doe"
+date: "November 12, 2018"
+output:
+  html_document:
+    theme: lumen
+    highlight: tango
+    toc: true
+    toc_float: true
+    code_folding: hide
+---
+
+---
+
+```{js}
+// addEventListener support for IE8
+function bindEvent(element, eventName, eventHandler) {
+    if (element.addEventListener) {
+        element.addEventListener(eventName, eventHandler, false);
+    } else if (element.attachEvent) {
+        element.attachEvent('on' + eventName, eventHandler);
+    }
+}
+
+// Send Message
+var sendMessage = function (message) {
+  // Make sure you are sending a string, and to stringify JSON
+  // var message = JSON.stringify(message)
+  window.parent.postMessage(message, '*');
+};
+
+// Send a message to the Parent on hashchange event
+bindEvent(window, 'hashchange', function () {
+  var hash = window.location.hash
+  var hashString = hash.replace("_", "-");
+  sendMessage('locHash:' + hashString);
+});
+
+// Listen to message from Parent
+bindEvent(window, 'message', function (e) {
+  var hashobj = e.data;
+  var hashstr = hashobj.replace("_", "-");
+  window.location.hash = hashstr;
+});
+```
+
+---
+
+# Lorem ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Natoque penatibus et magnis dis parturient montes nascetur ridiculus. Mattis aliquam faucibus purus in massa. Aliquet nec ullamcorper sit amet risus. Lectus urna duis convallis convallis tellus. Nibh mauris cursus mattis molestie a iaculis. Turpis egestas pretium aenean pharetra magna ac. Dis parturient montes nascetur ridiculus mus mauris. Eget sit amet tellus cras. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Viverra aliquet eget sit amet tellus.
+
+# Elementum
+
+Elementum nibh tellus molestie nunc non blandit massa enim. Quam id leo in vitae. Odio eu feugiat pretium nibh ipsum. Etiam non quam lacus suspendisse faucibus. Feugiat in fermentum posuere urna. Placerat duis ultricies lacus sed. Pharetra et ultrices neque ornare. Massa sapien faucibus et molestie ac feugiat sed. Eu augue ut lectus arcu. Id aliquet risus feugiat in ante metus dictum at.
+
+# Nunc non
+
+Nunc non blandit massa enim nec dui. Vitae congue eu consequat ac felis donec et. Facilisis mauris sit amet massa vitae. Lacus viverra vitae congue eu consequat ac felis donec et. Interdum consectetur libero id faucibus nisl tincidunt eget. Amet venenatis urna cursus eget nunc scelerisque. Tincidunt ornare massa eget egestas purus viverra accumsan in nisl. Nisi est sit amet facilisis magna etiam tempor orci eu. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Purus in mollis nunc sed id. Nec feugiat in fermentum posuere urna. Morbi leo urna molestie at. Ultrices eros in cursus turpis. Consequat interdum varius sit amet mattis vulputate enim. Ac feugiat sed lectus vestibulum mattis.
+
+# Id neque
+
+Id neque aliquam vestibulum morbi. Mi proin sed libero enim sed faucibus. Facilisis gravida neque convallis a cras semper auctor neque vitae. Varius sit amet mattis vulputate enim nulla aliquet porttitor lacus. 
+
+## Consectetur
+
+Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Praesent tristique magna sit amet purus gravida quis blandit. Ut tortor pretium viverra suspendisse potenti nullam ac tortor. Feugiat pretium nibh ipsum consequat nisl. Eget mi proin sed libero enim. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla. Eu scelerisque felis imperdiet proin fermentum leo.
+
+## Cursus
+
+Cursus euismod quis viverra nibh cras. Donec massa sapien faucibus et molestie. Integer quis auctor elit sed vulputate mi sit amet. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Pulvinar etiam non quam lacus. Mattis molestie a iaculis at erat pellentesque adipiscing. Phasellus vestibulum lorem sed risus. Viverra justo nec ultrices dui sapien eget. Suspendisse interdum consectetur libero id.
+
+# Imperdiet
+
+Imperdiet nulla malesuada pellentesque elit eget gravida. Ut tortor pretium viverra suspendisse. Adipiscing commodo elit at imperdiet dui accumsan. Cursus euismod quis viverra nibh cras pulvinar mattis. In hac habitasse platea dictumst quisque. Ut etiam sit amet nisl purus in mollis nunc. Lobortis elementum nibh tellus molestie nunc non blandit massa. Laoreet sit amet cursus sit amet dictum sit amet justo. Ut placerat orci nulla pellentesque. Pellentesque habitant morbi tristique senectus et. Nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus. Dapibus ultrices in iaculis nunc sed. Pharetra massa massa ultricies mi. Enim sit amet venenatis urna cursus eget. Volutpat lacus laoreet non curabitur gravida arcu ac. Sit amet commodo nulla facilisi nullam vehicula ipsum a arcu. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Arcu felis bibendum ut tristique et egestas quis. Ut eu sem integer vitae justo eget magna fermentum iaculis. A iaculis at erat pellentesque adipiscing commodo elit at.
