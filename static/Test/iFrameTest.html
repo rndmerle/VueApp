@@ -287,13 +287,13 @@ div.tocify {
 <span class="op">};</span>
 
 <span class="co">// Send a message to the Parent on hashchange event</span>
-<span class="co">// bindEvent(window, &#39;hashchange&#39;, function () {</span>
-<span class="co">//   var hash = JSON.stringify(window.location.hash)</span>
-<span class="co">//   var hashstr = hash.replace(&quot;_&quot;, &quot;-&quot;);</span>
-<span class="co">//   sendMessage(&#39;locHash:&#39; + hashstr);</span>
-<span class="co">// });</span>
+<span class="at">bindEvent</span>(window<span class="op">,</span> <span class="st">&#39;hashchange&#39;</span><span class="op">,</span> <span class="kw">function</span> () <span class="op">{</span>
+  <span class="kw">var</span> hash <span class="op">=</span> <span class="va">JSON</span>.<span class="at">stringify</span>(<span class="va">window</span>.<span class="va">location</span>.<span class="at">hash</span>)
+  <span class="kw">var</span> hashstr <span class="op">=</span> <span class="va">hash</span>.<span class="at">replace</span>(<span class="st">&quot;_&quot;</span><span class="op">,</span> <span class="st">&quot;-&quot;</span>)<span class="op">;</span>
+  <span class="at">sendMessage</span>(<span class="st">&#39;locHash:&#39;</span> <span class="op">+</span> hashstr)<span class="op">;</span>
+<span class="op">}</span>)<span class="op">;</span>
 
-<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;TOC&quot;</span>).<span class="at">addEventListener</span>(<span class="st">&#39;hashchange&#39;</span><span class="op">,</span> <span class="kw">function</span> () <span class="op">{</span> <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;hash changed!&#39;</span>) <span class="op">}</span>)
+<span class="co">// document.getElementById(&quot;TOC&quot;).addEventListener(&#39;hashchange&#39;, function () { console.log(&#39;hash changed!&#39;) })</span>
 
 <span class="co">// Listen to message from Parent</span>
 <span class="at">bindEvent</span>(window<span class="op">,</span> <span class="st">&#39;message&#39;</span><span class="op">,</span> <span class="kw">function</span> (e) <span class="op">{</span>
@@ -318,13 +318,13 @@ var sendMessage = function (msg) {
 };
 
 // Send a message to the Parent on hashchange event
-// bindEvent(window, 'hashchange', function () {
-//   var hash = JSON.stringify(window.location.hash)
-//   var hashstr = hash.replace("_", "-");
-//   sendMessage('locHash:' + hashstr);
-// });
+bindEvent(window, 'hashchange', function () {
+  var hash = JSON.stringify(window.location.hash)
+  var hashstr = hash.replace("_", "-");
+  sendMessage('locHash:' + hashstr);
+});
 
-document.getElementById("TOC").addEventListener('hashchange', function () { console.log('hash changed!') })
+// document.getElementById("TOC").addEventListener('hashchange', function () { console.log('hash changed!') })
 
 // Listen to message from Parent
 bindEvent(window, 'message', function (e) {

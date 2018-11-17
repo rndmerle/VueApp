@@ -31,13 +31,13 @@ var sendMessage = function (msg) {
 };
 
 // Send a message to the Parent on hashchange event
-// bindEvent(window, 'hashchange', function () {
-//   var hash = JSON.stringify(window.location.hash)
-//   var hashstr = hash.replace("_", "-");
-//   sendMessage('locHash:' + hashstr);
-// });
+bindEvent(window, 'hashchange', function () {
+  var hash = JSON.stringify(window.location.hash)
+  var hashstr = hash.replace("_", "-");
+  sendMessage('locHash:' + hashstr);
+});
 
-document.getElementById("TOC").addEventListener('hashchange', function () { console.log('hash changed!') })
+// document.getElementById("TOC").addEventListener('hashchange', function () { console.log('hash changed!') })
 
 // Listen to message from Parent
 bindEvent(window, 'message', function (e) {
