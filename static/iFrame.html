@@ -326,9 +326,13 @@ bindEvent(window, 'hashchange', function () {
 
 // Listen to message from Parent
 bindEvent(window, 'message', function (e) {
-  var hashobj = e.data;
-  var hashstr = hashobj.replace("_", "-");
-  window.location.hash = hashstr;
+  var message = e.data;
+  if (typeof message !== 'string') return
+  if (message.startsWith('parentHash:')) {
+    var locationHash = message.substring(message.indexOf('#'))
+    var hashstr = locationHash.replace("_", "-");
+    window.location.hash = hashstr;
+  } 
 });
 </script>
 <hr />

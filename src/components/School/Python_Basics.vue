@@ -28,10 +28,9 @@ export default {
     // Listen to message from iframe element
     window.addEventListener('message', function (msg) {
       var message = msg.data
-      var locationHash = message.substring(message.indexOf('#'))
-      // console.log(locationHash)
-
+      if (typeof message !== 'string') return
       if (message.startsWith('locHash:')) {
+        var locationHash = message.substring(message.indexOf('#'))
         var newurl = window.location.protocol + '//' + window.location.host + window.location.pathname + locationHash
         window.history.pushState({ path: newurl }, '', newurl)
       }
@@ -43,7 +42,7 @@ export default {
       var hash = window.location.hash
 
       if (hash) {
-        document.getElementById('myIframe').contentWindow.postMessage(hash, '*')
+        document.getElementById('myIframe').contentWindow.postMessage(`parentHash:${hash}`, '*')
         console.log(hash)
       } else {
         console.log('No hash!')
